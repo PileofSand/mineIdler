@@ -27,11 +27,11 @@ namespace GameCode.MineLevel
             _collection = collection;
         }
 
-        public void CreateMine(int levelID)
+        public void CreateMine(int levelID, string title, string description)
         {
             var mineLevel = Object.Instantiate(_mineLevelView);
 
-            var minelevelModel = new MineLevelModel(levelID);
+            var minelevelModel = new MineLevelModel(levelID, title, description);
             var mineController = new MineLevelController(mineLevel, minelevelModel);
             var financeModel = new FinanceModel();
 

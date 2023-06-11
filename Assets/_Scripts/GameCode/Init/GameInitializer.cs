@@ -9,30 +9,28 @@ using GameCode.Warehouse;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace GameCode.Init
 {
     public class GameInitializer : MonoBehaviour
     {
-        [SerializeField] private GameConfig _gameConfig;
-        [SerializeField] private CameraView _cameraView;
-        [SerializeField] private MineLevelView _mineLevelView;
-
+        private MineLevelFactory _mineLevelFactory;
         private MineLevelsCollection _mineLevelCollection;
 
-        private void Start()
+        private void Awake()
         {
-            var disposable = new CompositeDisposable().AddTo(this);
-            var tutorialModel = new TutorialModel();
-            new CameraController(_cameraView, tutorialModel);
-
-            //MineLevel
-            _mineLevelCollection = new MineLevelsCollection();
-            var mineLevelFactory = new MineLevelFactory(_mineLevelView, tutorialModel, _gameConfig, disposable, _mineLevelCollection);
-
-            mineLevelFactory.CreateMine(1);
-            mineLevelFactory.CreateMine(2);
+            //TODO: Get data for title and description from scriptable objects or other source.
+            _mineLevelFactory.CreateMine(1, "Mine 1", "This is your first mine in which you start of your tycoon journey");
+            _mineLevelFactory.CreateMine(2, "Mine 2", "So exciting: A second mine!");
             _mineLevelCollection.ActivateLevel(1);
+        }
+
+        [Inject]
+        private void Construct(MineLevelsCollection mineLevelsCollection, MineLevelFactory mineLevelFactory)
+        {
+            _mineLevelFactory = mineLevelFactory;
+            _mineLevelCollection = mineLevelsCollection;
         }
 
         public void ActivateMine(int id)

@@ -6,6 +6,6 @@ namespace GameCode.MineLevel
 {
     public interface IMineLevelFactory
     {
-        void CreateMine(int levelID);
+        void CreateMine(int levelID, string title, string description);
     }
 }
