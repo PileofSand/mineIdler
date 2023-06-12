@@ -32,10 +32,5 @@ namespace GameCode.Init
             _mineLevelFactory = mineLevelFactory;
             _mineLevelCollection = mineLevelsCollection;
         }
-
-        public void ActivateMine(int id)
-        {
-            _mineLevelCollection.ActivateLevel(id);
-        }
     }
 }
