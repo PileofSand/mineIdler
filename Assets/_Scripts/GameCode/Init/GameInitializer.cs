@@ -17,6 +17,7 @@ namespace GameCode.Init
     {
         private MineLevelFactory _mineLevelFactory;
         private MineLevelsCollection _mineLevelCollection;
+        private CameraController _cameraController;
 
         private void Awake()
         {
@@ -26,11 +27,13 @@ namespace GameCode.Init
             _mineLevelCollection.ActivateLevel(1);
         }
 
+
         [Inject]
-        private void Construct(MineLevelsCollection mineLevelsCollection, MineLevelFactory mineLevelFactory)
+        private void Construct(MineLevelsCollection mineLevelsCollection, MineLevelFactory mineLevelFactory, CameraController cameraController)
         {
             _mineLevelFactory = mineLevelFactory;
             _mineLevelCollection = mineLevelsCollection;
+            _cameraController = cameraController;
         }
     }
 }

@@ -16,9 +16,9 @@ namespace GameCode.MineLevel
         private readonly CompositeDisposable _disposable;
         private readonly MineLevelView _mineLevelView;
         private readonly MineLevelsCollection _collection;
-        private readonly TutorialModel _tutorialModel;
+        private readonly ITutorialModel _tutorialModel;
 
-        public MineLevelFactory(MineLevelView mineLevelView, TutorialModel tutorialModel, GameConfig config, CompositeDisposable disposable, MineLevelsCollection collection)
+        public MineLevelFactory(MineLevelView mineLevelView, ITutorialModel tutorialModel, GameConfig config, CompositeDisposable disposable, MineLevelsCollection collection)
         {
             _mineLevelView = mineLevelView;
             _tutorialModel = tutorialModel;
