@@ -15,12 +15,12 @@ namespace GameCode.Injection
 
         public override void InstallBindings()
         {
-            //TODO: Seperate Installers to multiple files.
+            //TODO seperate installers to external files and change binding for Interfaces rather than classes to make it more modular.
             Container.Bind<MineLevelsCollection>().To<MineLevelsCollection>().AsSingle();
             Container.Bind<TutorialModel>().To<TutorialModel>().AsSingle();
             Container.Bind<CameraController>().To<CameraController>().AsSingle();
             Container.Bind<CompositeDisposable>().To<CompositeDisposable>().AsSingle();
-            Container.Bind<CameraView>().To<CameraView>().AsSingle();
+            Container.Bind<CameraView>().To<CameraView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<MineLevelFactory>().To<MineLevelFactory>().AsSingle().NonLazy();
             Container.BindInstances(_gameConfig, _mineLevelView);
         }

@@ -29,8 +29,7 @@ namespace GameCode.MineLevel
 
         public void CreateMine(int levelID, string title, string description)
         {
-            var mineLevel = Object.Instantiate(_mineLevelView);
-
+            var mineLevel = Object.Instantiate(_mineLevelView);          
             var minelevelModel = new MineLevelModel(levelID, title, description);
             var mineController = new MineLevelController(mineLevel, minelevelModel);
             var financeModel = new FinanceModel();

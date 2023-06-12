@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using UnityEngine.Events;
+using DG.Tweening;
 
 namespace GameCode.UI
 {
@@ -13,17 +13,23 @@ namespace GameCode.UI
         [SerializeField] private Button _mineButton;
         [SerializeField] private TextMeshProUGUI _titleField;
         [SerializeField] private TextMeshProUGUI _descriptionField;
-
         private int _id;
 
         public int Id => _id;
 
+        public Button MineButton => _mineButton;
+
         public void Initialise(string title, string description, int id, Action<int> changeLevelAction)
         {
             _id = id;
-            _mineButton.onClick.AddListener(() => changeLevelAction(_id));
+            MineButton.onClick.AddListener(() => changeLevelAction(_id));
             _titleField.text = title;
             _descriptionField.text = description;
+        }
+
+        public void Deinitialise()
+        {
+            MineButton.onClick.RemoveAllListeners();
         }
     }
 }
